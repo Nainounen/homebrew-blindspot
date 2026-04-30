@@ -1,6 +1,6 @@
 cask "blindspot" do
   version "1.0.0"
-  sha256 :no_check # replaced by CI on every tagged release
+  sha256 "fbf07d9e2de51c47cfc3dce79cf38743e96705df00c0fd2c28c36d71b4970497"
 
   url "https://github.com/Nainounen/blind-spot/releases/download/v#{version}/BlindSpot-#{version}.dmg"
   name "BlindSpot"
@@ -16,18 +16,13 @@ cask "blindspot" do
 
   app "BlindSpot.app"
 
-  # The app is not yet notarized with a Developer ID. Without these steps
-  # macOS Gatekeeper would refuse to launch it after install. We strip the
-  # quarantine xattr and re-sign the bundle ad-hoc so the user does not see
-  # the "damaged / move to trash" dialog. Remove this block once we ship a
-  # notarized build.
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/BlindSpot.app"],
-                   sudo: false
+         args: ["-cr", "#{appdir}/BlindSpot.app"],
+         sudo: false
     system_command "/usr/bin/codesign",
-                   args: ["--force", "--deep", "--sign", "-", "#{appdir}/BlindSpot.app"],
-                   sudo: false
+         args: ["--force", "--deep", "--sign", "-", "#{appdir}/BlindSpot.app"],
+         sudo: false
   end
 
   uninstall quit: "com.blindspot.app"
