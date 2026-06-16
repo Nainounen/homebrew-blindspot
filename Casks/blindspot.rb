@@ -1,6 +1,6 @@
 cask "blindspot" do
-  version "2.0.6"
-  sha256 "936231afe10e7af469e07c5a35330ed10411b36b130150151b5dbc5b21f9fa0b"
+  version "2.0.7"
+  sha256 "8f26b00d4c47051b4c16e1bf067678ab1cf03127cab2d5b3fadc46b5b12c5a86"
 
   url "https://github.com/Nainounen/blind-spot/releases/download/v#{version}/BlindSpot-#{version}.dmg"
   name "BlindSpot"
