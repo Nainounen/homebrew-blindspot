@@ -1,6 +1,6 @@
 cask "blindspot" do
-  version "2.1.1"
-  sha256 "24226bfeb3e5ab6b34ec1bc0b602ae7c926e61efccb0cbe26da93b6f69843423"
+  version "2.2.0"
+  sha256 "d27bf06099064cb9e1dfb42d7fbdd6ae1e63419850326fabdd1935860e2ec1e9"
 
   url "https://github.com/Nainounen/blind-spot/releases/download/v#{version}/BlindSpot-#{version}.dmg"
   name "BlindSpot"
@@ -12,18 +12,9 @@ cask "blindspot" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: ">= :tahoe"
 
   app "BlindSpot.app"
-
-  postflight do
-    system_command "/usr/bin/xattr",
-         args: ["-cr", "#{appdir}/BlindSpot.app"],
-         sudo: false
-    system_command "/usr/bin/codesign",
-         args: ["--force", "--deep", "--sign", "-", "#{appdir}/BlindSpot.app"],
-         sudo: false
-  end
 
   uninstall quit: "com.blindspot.app"
 
